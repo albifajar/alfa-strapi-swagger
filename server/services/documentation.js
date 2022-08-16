@@ -140,7 +140,11 @@ module.exports = ({ strapi }) => {
         await fs.writeJson(apiDocPath, apiPath, { spaces: 2 });
 
         const componentSchema = buildComponentSchema(api);
-
+        // override api doc
+        const overridedApiDocPath = path.join(apiDirPath, 'overrides', `${apiName}.json`);
+        if (fs.existsSync(overridedApiDocPath)) {
+          apiPath.paths = JSON.parse(fs.readFileSync(overridedApiDocPath, 'utf8')).paths;
+        }
         schemas = {
           ...schemas,
           ...componentSchema,

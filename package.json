@@ -1,5 +1,5 @@
 {
-  "name": "@strapi/plugin-documentation",
+  "name": "sawala-strapi-plugin-documentation",
   "version": "4.2.0",
   "description": "Create an OpenAPI Document and visualize your API with SWAGGER UI.",
   "repository": {
@@ -9,15 +9,15 @@
   },
   "license": "SEE LICENSE IN LICENSE",
   "author": {
-    "name": "Strapi Solutions SAS",
-    "email": "hi@strapi.io",
-    "url": "https://strapi.io"
+    "name": "Albi Fajar",
+    "email": "me@albifajar.com",
+    "url": "https://albifajar.com"
   },
   "maintainers": [
     {
-      "name": "Strapi Solutions SAS",
-      "email": "hi@strapi.io",
-      "url": "https://strapi.io"
+      "name": "Albi Fajar",
+      "email": "me@albifajar.com",
+      "url": "https://albifajar.com"
     }
   ],
   "scripts": {
@@ -56,6 +56,5 @@
     "name": "documentation",
     "description": "Create an OpenAPI Document and visualize your API with SWAGGER UI.",
     "kind": "plugin"
-  },
-  "gitHead": "12c8ee3b2d95fe417de4d939db0311a0513bd8da"
+  }
 }
