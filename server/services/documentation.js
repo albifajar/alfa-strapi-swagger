@@ -8,6 +8,34 @@ const { getAbsoluteServerUrl } = require('@strapi/utils');
 const defaultPluginConfig = require('../config/default-plugin-config');
 const { builApiEndpointPath, buildComponentSchema } = require('./helpers');
 
+const overrideObjectDocs = (items, override) => {
+  Object.keys(items).forEach((i)=>{
+    if(override[i]){
+    Object.keys(items[i]).forEach((ii)=>{
+
+      if(override[i][ii]){
+      Object.keys(items[i][ii]).forEach((iii)=>{
+
+        if(override[i][ii][iii]){
+
+          if(iii == 'parameters' || iii == 'tags'){
+            //push array form file override
+            items[i][ii][iii].push(override[i][ii][iii]);
+          }else if(iii == 'responses'){
+            //assign object form file override
+            Object.assign(items[i][ii][iii], override[i][ii][iii])
+          }
+
+        }
+      
+      })
+      }
+    })
+    }
+    // console.log(items[i])
+  })
+}
+
 module.exports = ({ strapi }) => {
   const config = strapi.config.get('plugin.documentation');
 
@@ -143,8 +171,11 @@ module.exports = ({ strapi }) => {
         // override api doc
         const overridedApiDocPath = path.join(apiDirPath, 'overrides', `${apiName}.json`);
         if (fs.existsSync(overridedApiDocPath)) {
-          apiPath.paths = JSON.parse(fs.readFileSync(overridedApiDocPath, 'utf8')).paths;
+          const resultOverrides = JSON.parse(fs.readFileSync(overridedApiDocPath, 'utf8'))
+          //overide object default
+          overrideObjectDocs(apiPath, resultOverrides)
         }
+
         schemas = {
           ...schemas,
           ...componentSchema,
