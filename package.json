@@ -1,13 +1,13 @@
 {
-  "name": "sawala-strapi-plugin-documentation",
+  "name": "alfa-strapi-swagger",
   "version": "4.2.0",
-  "description": "Create an OpenAPI Document and visualize your API with SWAGGER UI.",
+  "description": "Visualize API with SWAGGER UI for strapi.",
   "repository": {
     "type": "git",
-    "url": "https://github.com/strapi/strapi.git",
-    "directory": "packages/plugins/documentation"
+    "url": "https://github.com/alfarama/alfa-strapi-swagger.git",
+    "directory": "./"
   },
-  "license": "SEE LICENSE IN LICENSE",
+  "license": "MIT",
   "author": {
     "name": "Albi Fajar",
     "email": "me@albifajar.com",
@@ -54,7 +54,7 @@
   "strapi": {
     "displayName": "Documentation",
     "name": "documentation",
-    "description": "Create an OpenAPI Document and visualize your API with SWAGGER UI.",
+    "description": "Visualize API with SWAGGER UI for strapi.",
     "kind": "plugin"
   }
 }
