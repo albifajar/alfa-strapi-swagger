@@ -20,7 +20,7 @@ const overrideObjectDocs = (items, override) => {
 
           if(iii == 'parameters' || iii == 'tags'){
             //push array form file override
-            items[i][ii][iii].push(override[i][ii][iii]);
+            items[i][ii][iii] = override[i][ii][iii].concat(items[i][ii][iii]);
           }else if(iii == 'responses'){
             //assign object form file override
             Object.assign(items[i][ii][iii], override[i][ii][iii])
@@ -32,8 +32,8 @@ const overrideObjectDocs = (items, override) => {
       }
     })
     }
-    // console.log(items[i])
   })
+  return items
 }
 
 module.exports = ({ strapi }) => {
@@ -158,7 +158,7 @@ module.exports = ({ strapi }) => {
 
         const apiDocPath = path.join(apiDirPath, `${apiName}.json`);
 
-        const apiPath = builApiEndpointPath(api);
+        let apiPath = builApiEndpointPath(api);
 
         if (!apiPath) {
           continue;
@@ -173,7 +173,7 @@ module.exports = ({ strapi }) => {
         if (fs.existsSync(overridedApiDocPath)) {
           const resultOverrides = JSON.parse(fs.readFileSync(overridedApiDocPath, 'utf8'))
           //overide object default
-          overrideObjectDocs(apiPath, resultOverrides)
+          apiPath = overrideObjectDocs(apiPath, resultOverrides)
         }
 
         schemas = {
