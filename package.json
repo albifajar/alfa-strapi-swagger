@@ -1,10 +1,10 @@
 {
   "name": "alfa-strapi-swagger",
-  "version": "4.2.0",
+  "version": "4.2.001",
   "description": "Visualize API with SWAGGER UI for strapi.",
   "repository": {
     "type": "git",
-    "url": "https://github.com/alfarama/alfa-strapi-swagger.git",
+    "url": "https://github.com/albifajar/alfa-strapi-swagger.git",
     "directory": "./"
   },
   "license": "MIT",
