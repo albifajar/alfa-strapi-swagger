@@ -9,28 +9,30 @@ const defaultPluginConfig = require('../config/default-plugin-config');
 const { builApiEndpointPath, buildComponentSchema } = require('./helpers');
 
 const overrideObjectDocs = (items, override) => {
-  Object.keys(items).forEach((i)=>{
-    if(override[i]){
-    Object.keys(items[i]).forEach((ii)=>{
+  Object.keys(override).forEach((i)=>{
+    //endpoint checker
+    if(items[i]){
+      Object.keys(override[i]).forEach((ii)=>{
+        //method checker
+        if(items[i][ii]){
 
-      if(override[i][ii]){
-      Object.keys(items[i][ii]).forEach((iii)=>{
+        Object.keys(override[i][ii]).forEach((iii)=>{
+          if(items[i][ii][iii]){
+            if(iii == 'parameters' || iii == 'tags'){
+              //push array form file override
+              items[i][ii][iii] = override[i][ii][iii].concat(items[i][ii][iii]);
+            }else if(iii == 'responses' || iii == 'requestBody'){
+              //assign object form file override
+              Object.assign(items[i][ii][iii], override[i][ii][iii])
+            }
 
-        if(override[i][ii][iii]){
-
-          if(iii == 'parameters' || iii == 'tags'){
-            //push array form file override
-            items[i][ii][iii] = override[i][ii][iii].concat(items[i][ii][iii]);
-          }else if(iii == 'responses'){
-            //assign object form file override
-            Object.assign(items[i][ii][iii], override[i][ii][iii])
           }
+        })
 
         }
-      
       })
-      }
-    })
+    }else{
+      Object.assign(items, override)
     }
   })
   return items

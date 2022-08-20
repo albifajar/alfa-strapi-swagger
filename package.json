@@ -1,6 +1,6 @@
 {
   "name": "alfa-strapi-swagger",
-  "version": "4.2.001",
+  "version": "4.2.11",
   "description": "Visualize API with SWAGGER UI for strapi.",
   "repository": {
     "type": "git",
