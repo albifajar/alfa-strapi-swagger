@@ -32,7 +32,8 @@ const overrideObjectDocs = (items, override) => {
         }
       })
     }else{
-      Object.assign(items, override)
+
+      Object.assign(items, JSON.parse(`{"${i}":${JSON.stringify(override[i])}}`))
     }
   })
   return items
